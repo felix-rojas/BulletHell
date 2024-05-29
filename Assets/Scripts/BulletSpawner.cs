@@ -20,6 +20,7 @@ public class BulletSpawner : MonoBehaviour
     {
         timer = spawnCooldown;
         rotations = new float[numberOfBullets];
+        BulletDistributions();
     }
 
     // Update is called once per frame
@@ -54,6 +55,7 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullets[i] = Instantiate(bulletPrefab, transform);
 
             Bullet b = spawnedBullets[i].GetComponent(typeof(Bullet)) as Bullet;
+            b.position = transform.position;
             b.rotation = rotations[i];
             b.speed = bulletSpeed;
             b.velocity = bulletVelocity;

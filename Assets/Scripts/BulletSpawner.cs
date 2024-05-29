@@ -5,8 +5,8 @@ using UnityEngine;
 public class BulletSpawner : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public float minRotation;
-    public float maxRotation;
+    public float minRotation = 1;
+    public float maxRotation = 360;
     public int numberOfBullets;
 
     public float spawnCooldown;
@@ -55,7 +55,7 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullets[i] = Instantiate(bulletPrefab, transform);
 
             Bullet b = spawnedBullets[i].GetComponent(typeof(Bullet)) as Bullet;
-            b.position = transform.position;
+            
             b.rotation = rotations[i];
             b.speed = bulletSpeed;
             b.velocity = bulletVelocity;

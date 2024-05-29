@@ -22,9 +22,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Bullet" && bulletTimer <= 0)
+        if (other.CompareTag("Bullet") && bulletTimer <= 0)
         {
             HP -= 1;
+            // reset invuln period
             bulletTimer = bulletCooldown;
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int startHP = 3;
-    int HP;
+    public int HP;
     // hit invuln
     public float bulletCooldown;
     float bulletTimer;

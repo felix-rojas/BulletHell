@@ -48,12 +48,12 @@ public class BulletSpawner : MonoBehaviour
 
     public GameObject[] spawnBullets()
     {
-        GameObject[] spawnedBullets = new GameObject[numberOfBullets];
+        GameObject[]  spawnedBullets = new GameObject[numberOfBullets];
         for (int i = 0; i < numberOfBullets; i++)
         {
             spawnedBullets[i] = Instantiate(bulletPrefab, transform);
 
-            var b = spawnedBullets[i].GetComponent<Bullet>;
+            Bullet b = spawnedBullets[i].GetComponent(typeof(Bullet)) as Bullet;
             b.rotation = rotations[i];
             b.speed = bulletSpeed;
             b.velocity = bulletVelocity;

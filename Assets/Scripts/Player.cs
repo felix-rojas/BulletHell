@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int startHP = 3;
-    public int HP;
+    public static int HP { get; private set; }
+
     // hit invuln
     public float bulletCooldown;
     float bulletTimer;
+
     void Start()
     {
         HP = startHP;
@@ -22,9 +25,9 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet") && bulletTimer <= 0)
+        if (other.tag == "Bullet")
         {
-            HP -= 1;
+            Player.HP -= 1;
             // reset invuln period
             bulletTimer = bulletCooldown;
         }

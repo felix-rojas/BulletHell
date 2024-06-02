@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -24,5 +25,10 @@ public class Bullet : MonoBehaviour
         lifeTimer -= Time.deltaTime;
         // recycle bullet
         if (lifeTimer <= 0) { gameObject.SetActive(false); }
+    }
+
+    public void ResetTimer()
+    {
+        lifeTimer = lifeSpan;
     }
 }

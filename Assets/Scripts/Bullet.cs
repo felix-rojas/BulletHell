@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float rotation;
     public float lifeSpan = 3.0f;
-    float lifeTimer;
+    public float lifeTimer = 3.0f;
     // Start is called before the first frame update
     void Start()
     {

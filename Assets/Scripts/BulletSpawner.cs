@@ -14,7 +14,8 @@ public class BulletSpawner : MonoBehaviour
     float timer;
 
     float[] rotations;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         timer = GetSpawnBehavior().spawnCooldown;
@@ -37,17 +38,19 @@ public class BulletSpawner : MonoBehaviour
     {
         for (int i = 0; i < GetSpawnBehavior().numberOfBullets; i++)
         {
-            var fraction = (float)i / (float)GetSpawnBehavior().numberOfBullets;
+            var fraction = (float)i / ((float)GetSpawnBehavior().numberOfBullets-1);
             var diff = GetSpawnBehavior().maxRotation - GetSpawnBehavior().minRotation;
             var fractionDiff = fraction * diff;
             rotations[i] = fractionDiff * GetSpawnBehavior().minRotation;
         }
-        
         return rotations;
     }
 
     public GameObject[] spawnBullets()
     {
+        rotations = new float[GetSpawnBehavior().numberOfBullets];
+        BulletDistributions();
+
         GameObject[]  spawnedBullets = new GameObject[GetSpawnBehavior().numberOfBullets];
         for (int i = 0; i < GetSpawnBehavior().numberOfBullets; i++)
         {
@@ -64,13 +67,16 @@ public class BulletSpawner : MonoBehaviour
             {
                 spawnedBullets[i].transform.SetParent(transform);
                 spawnedBullets[i].transform.localPosition = Vector3.zero;
+                spawnedBullets[i].SetActive(true);
             }
 
-            Bullet b = spawnedBullets[i].GetComponent(typeof(Bullet)) as Bullet;
+            Bullet b = spawnedBullets[i].GetComponent<Bullet>();
             
             b.rotation = rotations[i];
+            b.ResetTimer();
             b.speed = GetSpawnBehavior().bulletSpeed;
             b.velocity = GetSpawnBehavior().bulletVelocity;
+
             if (!GetSpawnBehavior().isParent)
             {
                 spawnedBullets[i].transform.SetParent(null);

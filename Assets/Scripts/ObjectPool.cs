@@ -1,38 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool instance;
-    public  GameObject prefab;
-    public static List<GameObject> pooledObjects;
-    public int poolSize = 100;
+    public static ObjectPool Instance;
+    private readonly List<GameObject> BulletPool = new();
+    private readonly int poolSize = 1000;
 
-    private void Awake()
+    public GameObject bulletPrefab;
+    
+    void Awake()
     {
-        if (instance == null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        pooledObjects = new List<GameObject>();
+    }
+    void Start()
+    {
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject b = Instantiate<GameObject>(prefab);
+            GameObject b = Instantiate(bulletPrefab);
             b.SetActive(false);
-            pooledObjects.Add(b);
+            BulletPool.Add(b);
         }
     }
 
-    public static GameObject GetBulletInPool()
+    public GameObject GetPooledObj()
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        for (int i = 0; i < BulletPool.Count; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!BulletPool[i].activeInHierarchy)
             {
-                return pooledObjects[i];
+                return BulletPool[i];
             }
         }
         return null;
+    }
+
+    public int GetActiveInHierarchyCount()
+    {
+        int count = 0;
+        foreach (GameObject bullet in BulletPool)
+        {
+            if (bullet.activeInHierarchy)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 }

@@ -15,3 +15,9 @@ If you succed, the game continues until you lose all your HP (10 hits). Good luc
 
 My gameplay here:
 https://youtu.be/20AciHtno8Q
+
+Assets used:
+SpaceShip models:
+https://craftpix.net/freebies/free-battle-spaceship-3d-low-poly-model-pack/?utm_campaign=Website&utm_source=itch.io&utm_medium=public 
+
+Skybox from SkySeries freebie

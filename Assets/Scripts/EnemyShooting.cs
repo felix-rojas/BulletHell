@@ -4,10 +4,10 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public Enemy enemy;
     public Transform firePoint;
     public float fireRate = 0.5f;
     public float bulletSpeed = 10.0f;
-    public int enemyLife = 3;
 
     private float timer = 0.0f;
 
@@ -30,14 +30,6 @@ public class EnemyShooting : MonoBehaviour
         {
             bullet.transform.position = firePoint.position;
             bullet.SetActive(true);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Bullet"))
-        {
-            enemyLife -= 1;
         }
     }
 

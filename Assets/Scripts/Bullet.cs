@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             gameObject.SetActive(false);
+            other.gameObject.GetComponent<Enemy>().TakeDamage(1);
         }
         if (other.gameObject.CompareTag("Player"))
         {

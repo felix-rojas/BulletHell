@@ -1,5 +1,6 @@
 # BulletHell
 Unity video-game that uses object pooling for bullets and object instancing for enemies on the screen.
+Move with WASD, slow motion with left shift and shoot with left click (you can hold)
 
 ## Phase one
 Enemies appear until the max_amount of enemies has been reached. After a timer has finished, they despawn and Phase 2 begins

@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public int current_enemies = 0;
     private float lifetime = 0.0f;
     private float enemyLifetime = 30.0f;
+    private float survivalTimer = 30.0f;
     private bool stopSpawning = false;
 
     private List<GameObject> activeEnemies = new();
@@ -39,11 +40,22 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        enemyCount.text = "Enemies: " + activeEnemies.Count;
         timer += Time.deltaTime;
         lifetime += Time.deltaTime;
+        if (stopSpawning)
+        {
+            enemyCount.text = $"Survive {survivalTimer:0.00##} seconds";
+            survivalTimer -= Time.deltaTime;
+            if (survivalTimer <= 0)
+            {
+                RemoveAllEnemies();
+                Destroy(boss);
+                enemyCount.text = "Success!";
+            }
+        }
         if (!stopSpawning)
         {
+        enemyCount.text = "Enemies: " + activeEnemies.Count;
             if (timer >= spawnInterval && activeEnemies.Count < max_enemies)
             {
                 GameObject enemy = Instantiate(enemyPrefab, transform.position + GeneratePosition(activeEnemies.Count), transform.rotation);

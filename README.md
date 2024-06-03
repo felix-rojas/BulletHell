@@ -11,3 +11,6 @@ Phase two is the boss phase, where the boss changes patterns (movement and shoot
 - Shoots death ray (dense)
 
 If you succed, the game continues until you lose all your HP (10 hits). Good luck!
+
+My gameplay here:
+https://youtu.be/20AciHtno8Q

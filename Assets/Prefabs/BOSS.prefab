@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circularRadius: 5
-  speed: 2
+  speed: 10
   linearDistance: 10
   zigzagAmplitude: 5
   zigzagFrequency: 1
@@ -136,12 +136,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcc6e509b7a7f743925918fd50057ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
   bulletPrefab: {fileID: 4330028923208821510, guid: 48c1b3bcdb5631b48980bbd149644b56, type: 3}
   coneAngle: 45
-  fireRate: 1
+  fireRate: 0.3
   speed: 2
-  bulletCount: 10
+  bulletCount: 2
+  timer: 0
 --- !u!4 &2246101521162903206 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31ae8740da005e84fa740d88098edb45, type: 3}

@@ -42,7 +42,7 @@ public class BossShooting : MonoBehaviour
             float bulletDirX = firePoint.position.x + Mathf.Sin(currentAngle * Mathf.Deg2Rad);
             float bulletDirY = firePoint.position.y + Mathf.Cos(currentAngle * Mathf.Deg2Rad);
 
-            Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0);
+            Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, -1);
             Vector3 bulletDir = (bulletMoveVector - firePoint.position).normalized;
 
             GameObject bullet = ObjectPool.Instance.GetPooledObj();
@@ -51,7 +51,7 @@ public class BossShooting : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.transform.position = bulletDir;
+                bullet.transform.position = bulletMoveVector;
                 bullet.SetActive(true);
             }
         }

@@ -1,31 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int startHP = 3;
-    int HP;
-    // hit invuln
-    public float bulletCooldown;
-    float bulletTimer;
+    public int maxHealth = 10;
+    private int currentHealth;
+    public Collider self;
+
+    public TextMeshProUGUI healthDisplay;
+
     void Start()
     {
-        HP = startHP;
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        bulletTimer -= Time.deltaTime;
+        healthDisplay.text = $"Health left: {currentHealth}";
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void TakeDamage(int amount)
     {
-        if (other.tag == "Bullet" && bulletTimer <= 0)
+        currentHealth -= amount;
+        if (currentHealth <= 0)
         {
-            HP -= 1;
-            bulletTimer = bulletCooldown;
+            Die();
         }
     }
-}
+
+    void Die()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            TakeDamage(1);
+        }
+    }
+}

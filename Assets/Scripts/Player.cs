@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int maxHealth = 10;
+    private int currentHealth;
+    public Collider self;
+
+    public TextMeshProUGUI healthDisplay;
+
     void Start()
     {
-        
+        currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        healthDisplay.text = $"Health left: {currentHealth}";
     }
-}
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bullet"))
+        {
+            TakeDamage(1);
+        }
+    }
+}
